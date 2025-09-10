@@ -89,7 +89,7 @@ class FileHeap {
         int size() const { 
             return heap.size(); 
         }
-        void ascending(int x=heap.size()){
+        void ascending(int x){
             std::vector<T> popped;
             while(x-- && !empty()){
                 T f = pop();
@@ -100,6 +100,9 @@ class FileHeap {
                 push(popped.back());
                 popped.pop_back();
             }
+        }
+        void ascending(){
+            ascending(heap.size());
         }
 };
 #endif
