@@ -16,31 +16,28 @@ class TreeNode{
         std::string message; 
         time_t created_timestamp ;
         time_t snapshot_timestamp ; 
-        TreeNode* par;
+        TreeNode* parent;
         std::vector<TreeNode*> children;
-        bool is_snap;
     public:
         TreeNode(int vi, const std::string &cnt, TreeNode* par){
             version_id = vi;
             created_timestamp = time(nullptr);
             snapshot_timestamp = -1;
-            this->par = par;
+            parent = par;
             content = cnt;
             if(vi==0){
-                is_snap=true;
                 snapshot_timestamp=time(nullptr);
                 message="Root node of file";
             }
             else{
-                this->par = par;
-                is_snap=false;
+                parent = par;
             }
         }
         std::string access() const {
             return content;
             }
         bool is_snapshot() const {
-            return is_snap;
+            return snapshot_timestamp != -1;
             }
         int get_version() const {
             return version_id;
@@ -64,11 +61,10 @@ class TreeNode{
             this->snapshot_timestamp = time(nullptr);
         }
         void take_snap() {
-            this->is_snap = true;
             this->snapshot_timestamp = time(nullptr);
         }
         TreeNode* get_par(){
-            return par;
+            return parent;
         }
 };
 class File{
