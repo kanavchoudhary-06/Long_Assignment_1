@@ -115,26 +115,28 @@ class File{
         }
         void insert(const std::string &data){
             if(is_snapshot()){
-                TreeNode* node = new TreeNode(total_versions, read()+data, active_version);
+                std::cout<<"New version "<<total_versions<<" created\n";
+                TreeNode* node = new TreeNode(total_versions, read()+" "+data, active_version);
                 active_version = node;
                 version_map.set(node->get_version(), node);
                 total_versions++;
             } 
             else {
-                active_version->add_data(data);
+                active_version->add_data(" " + data);
             }
             recent = time(nullptr);
             std::cout<<"Inserted "<<data<<" into "<<name<<"\n";
         }
         void update(const std::string &data){
             if(active_version->is_snapshot()){
+                std::cout<<"New version "<<total_versions<<" created\n";
                 TreeNode* node = new TreeNode(total_versions, data, active_version);
                 active_version = node;
                 version_map.set(node->get_version(), node);
                 total_versions++;
             } 
             else {
-                active_version->change_data(data);
+                active_version->change_data(" " + data);
             }
             recent = time(nullptr);
             std::cout<<"Updated "<<data<<" in "<<name<<"\n";

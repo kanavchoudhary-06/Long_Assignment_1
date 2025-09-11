@@ -134,14 +134,6 @@ public:
         f->file->insert(data);
         return {f->recent_heap, f->biggest_heap_idx};
     }
-    std::pair<int,int> get_ids(const K &fn){
-        if(!get(fn)){ 
-            std::cout<<"Error: file not found\n"; 
-            return {-1,-1};
-        }
-        V f = get(fn);
-        return {f->recent_heap, f->biggest_heap_idx};
-    }
     std::pair<int,int> update(const K &fn,const K &data){
         if(!get(fn)){ 
             std::cout<<"Error: file not found\n"; 
@@ -151,12 +143,14 @@ public:
         f->file->update(data);
         return {f->recent_heap, f->biggest_heap_idx};
     }
-    void snapshot(const K &fn,const K &msg){
+    std::pair<int,int> snapshot(const K &fn,const K &msg){
         if(!get(fn)){ 
-            std::cout<<"Error: file not found\n"; return; 
+            std::cout<<"Error: file not found\n"; 
+            return {-1,-1};
         }
         V f = get(fn);
         f->file->snapshot(msg);
+        return {f->recent_heap, f->biggest_heap_idx};
     }
 
     void rollback(const K &fn, int id){

@@ -115,26 +115,24 @@ int main() {
                 k++;
             }
             if(k < name_msg.size()) msg=name_msg.substr(k, name_msg.size() - k);
-            files.snapshot(name, msg);
-            std::pair<int,int> id = files.get_ids(name);
+            std::pair<int,int> id = files.snapshot(name, msg);
             if(id.first != -1) recentFiles.update(id.first);
         }
         else if (cmd == "ROLLBACK") {
             std::string name;
             std::string versionId;
             std::string name_ver=clean_space(ss);
-
+            int k=0;
+            while(name_ver[k]!=' '){
+                k++;
+            }
+            name=name_ver.substr(0,k);
             if(name_ver[name_ver.size()-1]>='0' && name_ver[name_ver.size()-1]<='9'){
-                int k=name_ver.size()-1;
-                while(name_ver[k]!=' '){
-                    k--;
-                }
-                versionId = name_ver.substr(k+1, name_ver.size() - k - 1);
                 int j=k;
                 while(name_ver[j]==' '){
-                    j--;
+                    j++;
                 }
-                name=name_ver.substr(0,j+1);
+                versionId = name_ver.substr(j, name_ver.size() - j);
                 files.rollback(name, std::stoi(versionId));
             }
             else{
