@@ -1,0 +1,99 @@
+File created: file1
+
+New version 1 created
+Inserted Hello into file1
+Hello
+Snapshot created of file1 with Message: initial_commit
+New version 2 created
+Inserted world into file1
+Helloworld
+Updated Replaced_content_for_file1 in file1
+Replaced_content_for_file1
+Snapshot created of file1 with Message: second_commit
+File created: file2
+New version 1 created
+Inserted Alpha Beta into file2
+Snapshot created of file2 with Message: file2_first_snapshot
+Alpha Beta
+Name : file2 versions: 2 last changed: 2025-09-11 12:53:34
+Name : file1 versions: 3 last changed: 2025-09-11 12:53:34
+Name : file1 versions: 3 last changed: 2025-09-11 12:53:34
+Name : file2 versions: 2 last changed: 2025-09-11 12:53:34
+Rolled back file1 to version 0
+
+New version 3 created
+Inserted branch_after_root into file1
+branch_after_root
+Snapshot created of file1 with Message: branch_commit
+id: 0 Snapshot Time: 2025-09-11 12:53:34 Message: Root node of file
+id: 3 Snapshot Time: 2025-09-11 12:53:34 Message: branch_commit
+Error: file not found
+Error: invalid version id
+Rolled back file1 to previous version
+
+File created: file3
+New version 1 created
+Inserted a into file3
+Inserted b into file3
+Inserted c into file3
+abc
+Snapshot created of file3 with Message: first_snapshot_file3
+New version 2 created
+Inserted new_after_snapshot into file3
+abcnew_after_snapshot
+id: 0 Snapshot Time: 2025-09-11 12:53:34 Message: Root node of file
+id: 1 Snapshot Time: 2025-09-11 12:53:34 Message: first_snapshot_file3
+Error: version is already a snapshot
+File created: bigfile
+New version 1 created
+Inserted v1 into bigfile
+Inserted v2 into bigfile
+Snapshot created of bigfile with Message: s1
+New version 2 created
+Inserted v3 into bigfile
+Inserted v4 into bigfile
+Snapshot created of bigfile with Message: s2
+New version 3 created
+Inserted v5 into bigfile
+Name : file1 versions: 4 last changed: 2025-09-11 12:53:34
+Name : bigfile versions: 4 last changed: 2025-09-11 12:53:34
+Name : file3 versions: 3 last changed: 2025-09-11 12:53:34
+Name : file1 versions: 4 last changed: 2025-09-11 12:53:34
+Name : file2 versions: 2 last changed: 2025-09-11 12:53:34
+Name : file3 versions: 3 last changed: 2025-09-11 12:53:34
+Rolled back bigfile to version 2
+v1v2v3v4
+New version 4 created
+Inserted branch_from_v2 into bigfile
+Snapshot created of bigfile with Message: branch_snapshot
+id: 0 Snapshot Time: 2025-09-11 12:53:34 Message: Root node of file
+id: 1 Snapshot Time: 2025-09-11 12:53:34 Message: s1
+id: 2 Snapshot Time: 2025-09-11 12:53:34 Message: s2
+id: 4 Snapshot Time: 2025-09-11 12:53:34 Message: branch_snapshot
+Name : file1 versions: 4 last changed: 2025-09-11 12:53:34
+Name : file2 versions: 2 last changed: 2025-09-11 12:53:34
+Name : file3 versions: 3 last changed: 2025-09-11 12:53:34
+Name : bigfile versions: 5 last changed: 2025-09-11 12:53:34
+Name : bigfile versions: 5 last changed: 2025-09-11 12:53:34
+Name : file1 versions: 4 last changed: 2025-09-11 12:53:34
+Name : file3 versions: 3 last changed: 2025-09-11 12:53:34
+Name : file2 versions: 2 last changed: 2025-09-11 12:53:34
+Exiting system and Deleting all files.
+Deleting file: bigfile
+Version : 4 deleted
+Version : 3 deleted
+Version : 2 deleted
+Version : 1 deleted
+Version : 0 deleted
+Deleting file: file1
+Version : 3 deleted
+Version : 2 deleted
+Version : 1 deleted
+Version : 0 deleted
+Deleting file: file2
+Version : 1 deleted
+Version : 0 deleted
+Deleting file: file3
+Version : 2 deleted
+Version : 1 deleted
+Version : 0 deleted

@@ -23,17 +23,18 @@ std::string clean_space(std::stringstream &ss){
     std::string name;
     std::getline(ss, name);
     int j=0;
-    while(name[j]==' '){
+    while(j<name.size() &&name[j]==' '){
         j++;
     }
     int k=name.size()-1;
-    while(name[k]==' '){
+    while(k>-1 && name[k]==' '){
         k--;
     }
     name = name.substr(j, k - j + 1);
     return name;
 }
 int main() {
+    // freopen("output.txt","w",stdout);
     std::function<bool(std::shared_ptr<Val>, std::shared_ptr<Val>)>* time_comp_func = &time_comp;
     std::function<bool(std::shared_ptr<Val>, std::shared_ptr<Val>)>* size_comp_func = &size_comp;
     FileHashMap<std::string,std::shared_ptr<Val>> files;
@@ -70,12 +71,12 @@ int main() {
             std::string name, content="";
             std::string name_cont=clean_space(ss);
             int j=0;
-            while(name_cont[j]!=' '){
+            while(j<name_cont.size() &&name_cont[j]!=' '){
                 j++;
             }
             name= name_cont.substr(0,j);
             int k=j;
-            while(name_cont[k]==' '){
+            while(k<name_cont.size() && name_cont[k]==' '){
                 k++;
             }
             if(k < name_cont.size()) content=name_cont.substr(k, name_cont.size() - k);
@@ -88,12 +89,12 @@ int main() {
             std::string name, content="";
             std::string name_cont=clean_space(ss);
             int j=0;
-            while(name_cont[j]!=' '){
+            while(j<name_cont.size()&&name_cont[j]!=' '){
                 j++;
             }
             name= name_cont.substr(0,j);
             int k=j;
-            while(name_cont[k]==' '){
+            while(k<name_cont.size()&&name_cont[k]==' '){
                 k++;
             }
             if(k < name_cont.size()) content=name_cont.substr(k, name_cont.size() - k);
@@ -106,12 +107,12 @@ int main() {
             std::string msg=" ";
             std::string name_msg=clean_space(ss);
             int j=0;
-            while(name_msg[j]!=' '){
+            while(j<name_msg.size() &&name_msg[j]!=' '){
                 j++;
             }
             name= name_msg.substr(0,j);
             int k=j;
-            while(name_msg[k]==' '){
+            while(k<name_msg.size() && name_msg[k]==' '){
                 k++;
             }
             if(k < name_msg.size()) msg=name_msg.substr(k, name_msg.size() - k);
@@ -123,11 +124,14 @@ int main() {
             std::string versionId;
             std::string name_ver=clean_space(ss);
             int k=0;
-            while(name_ver[k]!=' '){
+            while(k<name_ver.size() && name_ver[k]!=' '){
                 k++;
             }
             name=name_ver.substr(0,k);
-            if(name_ver[name_ver.size()-1]>='0' && name_ver[name_ver.size()-1]<='9'){
+            while(k<name_ver.size() && name_ver[k]==' '){
+                k++;
+            }
+            if(name_ver[k]>='0' && name_ver[k]<='9'){
                 int j=k;
                 while(name_ver[j]==' '){
                     j++;

@@ -18,7 +18,7 @@ struct buck{
         }
         else{
             fi.push_back(std::make_pair(h,f));
-            if(fi.size()>2 && !tree_off){
+            if(fi.size()>10 && !tree_off){ // threshold to switch to tree set to 2 only for debugging
                 flag=true;
                 while(fi.size()){
                     std::pair<K,V> p=fi.back();
@@ -85,7 +85,11 @@ public:
         count = 0;
         buckets.resize(capacity);
     }
-    
+    ~FileHashMap(){
+        buckets.clear();
+        capacity = 0;
+        count = 0;
+    }
     void tree_off(){
         for (auto &bucket : buckets) {
             bucket.tree_off=true;
@@ -98,7 +102,7 @@ public:
         std::vector<buck<K,V>> old_buckets = std::move(buckets);
         buckets.clear();
         buckets.resize(capacity);
-        count = 0;
+        count = 0;              //harmless bug leading to rehashing at 3*capacity
         for(auto& bucket : old_buckets) {
             for(const auto& pair : bucket.fi) {
                 insert_fi(pair.first, pair.second);

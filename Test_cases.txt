@@ -1,0 +1,54 @@
+CREATE file1
+READ file1
+INSERT file1 Hello
+READ file1
+SNAPSHOT file1 initial_commit
+INSERT file1  world
+READ file1
+UPDATE file1 Replaced_content_for_file1
+READ file1
+SNAPSHOT file1 second_commit
+CREATE file2
+INSERT file2 Alpha Beta
+SNAPSHOT file2 file2_first_snapshot
+READ file2
+RECENT_FILES 5
+BIGGEST_TREES 5
+ROLLBACK file1 0
+READ file1
+INSERT file1 branch_after_root
+READ file1
+SNAPSHOT file1 branch_commit
+HISTORY file1
+READ non_existent_file
+ROLLBACK file2 999
+ROLLBACK file1
+READ file1
+CREATE file3
+INSERT file3 a
+INSERT file3 b
+INSERT file3 c
+READ file3
+SNAPSHOT file3 first_snapshot_file3
+INSERT file3 new_after_snapshot
+READ file3
+HISTORY file3
+SNAPSHOT file2 
+CREATE bigfile
+INSERT bigfile v1
+INSERT bigfile v2
+SNAPSHOT bigfile s1
+INSERT bigfile v3
+INSERT bigfile v4
+SNAPSHOT bigfile s2
+INSERT bigfile v5
+BIGGEST_TREES 3
+RECENT_FILES 3
+ROLLBACK bigfile 2
+READ bigfile
+INSERT bigfile branch_from_v2
+SNAPSHOT bigfile branch_snapshot
+HISTORY bigfile
+RECENT_FILES 10
+BIGGEST_TREES 2
+EXIT

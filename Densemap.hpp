@@ -27,8 +27,7 @@ class Densemap{
                 version_map[version] = node;
             }
             else{
-                version_map.resize(version + 1);
-                version_map[version] = node;
+                version_map.push_back(node);
             }
         }
         int size() const {
@@ -36,7 +35,6 @@ class Densemap{
         }
         ~Densemap(){
             while(!version_map.empty()){
-                std::cout<<"Version : "<< version_map.back()->get_version()<<" deleted\n";
                 delete version_map.back();
                 version_map.pop_back();
             }

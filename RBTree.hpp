@@ -52,12 +52,12 @@ class Bucket_map {
         inorder_collect(n->righ, result);
     }
     
-    Node<K,V>* look(const Node<K,V>* n, const K& k) const {
+    const Node<K,V>* look(const Node<K,V>* n, const K& k) const {
         if(!n){
             return nullptr;
         }
         if(k == n->key){
-            return const_cast<Node<K,V>*>(n);
+            return n;
         }
         if(k < n->key){
             return look(n->lef, k);
@@ -149,7 +149,7 @@ class Bucket_map {
         return n;
     }
 
-    Node<K,V>* lookNode(const K& k) const {
+    const Node<K,V>* lookNode(const K& k) const {
         return look(root, k);
     }
 
@@ -159,7 +159,7 @@ public:
     }
     
     V get(const K& k) const {
-        Node<K,V>* n = lookNode(k);
+        const Node<K,V>* n = lookNode(k);
         return n ? n->val : V();
     }
     
