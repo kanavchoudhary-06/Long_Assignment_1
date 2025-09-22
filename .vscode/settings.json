@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "charconv": "cpp",
+        "memory": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "streambuf": "cpp",
+        "string": "cpp",
+        "tuple": "cpp",
+        "xfacet": "cpp",
+        "xiosbase": "cpp",
+        "xstring": "cpp",
+        "functional": "cpp"
+    }
+}

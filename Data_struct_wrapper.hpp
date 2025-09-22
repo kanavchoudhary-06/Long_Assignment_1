@@ -24,6 +24,8 @@ struct Val{
     }
     ~Val(){
         delete file;
+        file = nullptr;
+        time_comp = nullptr;
     }
     void update(int id, std::function<bool(std::shared_ptr<Val>, std::shared_ptr<Val>)>* &comp){
         if(comp==time_comp) recent_heap = id;

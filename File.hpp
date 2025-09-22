@@ -33,6 +33,11 @@ class TreeNode{
                 parent = par;
             }
         }
+        ~TreeNode(){
+            std::cout<<"Version : "<< version_id <<" deleted\n";
+            parent = nullptr;
+            children.clear();
+        }
         std::string access() const {
             return content;
             }
@@ -69,9 +74,9 @@ class TreeNode{
 };
 class File{
     private:
-        TreeNode* root; // Your implementation of the tree
+        TreeNode* root;
         TreeNode* active_version ;
-        Densemap<TreeNode*> version_map ; // Your implementation of the HashMap
+        Densemap<TreeNode*> version_map ;
         int total_versions ;
         time_t recent;
         std::string name;
@@ -115,7 +120,8 @@ class File{
         }
         void insert(const std::string &data){
             if(is_snapshot()){
-                TreeNode* node = new TreeNode(total_versions, read()+data, active_version);
+                std::cout<<"New version "<<total_versions<<" created\n";
+                TreeNode* node = new TreeNode(total_versions, read()+ data, active_version);
                 active_version = node;
                 version_map.set(node->get_version(), node);
                 total_versions++;
@@ -128,6 +134,7 @@ class File{
         }
         void update(const std::string &data){
             if(active_version->is_snapshot()){
+                std::cout<<"New version "<<total_versions<<" created\n";
                 TreeNode* node = new TreeNode(total_versions, data, active_version);
                 active_version = node;
                 version_map.set(node->get_version(), node);
@@ -146,7 +153,7 @@ class File{
             else{
                 active_version->update(msg);
                 active_version->take_snap();
-                recent = time(nullptr);
+                recent = time(nullptr);// I have updated the recent time after snapshot missed the clarification message very simple fix by commenting this line all upstream updates would be nullified
                 std::cout<<"Snapshot created of "<<name<<" with Message: "<<msg<<"\n";
             }
         }
