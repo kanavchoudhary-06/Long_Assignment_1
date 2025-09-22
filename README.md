@@ -62,7 +62,7 @@ Compilation Instructions
 All .cpp and .hpp files should be in the same working directory.
 To Compile for Windows (I have a windows machine)
 Run the following in your terminal after putting the folder in the current working directory by cd command
-cl /EHsc /std:c++17 /Fe:<Program_name>.exe 2024CS10204.cpp
+cl /EHsc /std:c++17 /Fe:<Program_name>.exe Main.cpp
 <Program_name>.exe 
 to run the program
 
